@@ -1,0 +1,21 @@
+arduril-web/
+│
+├── app/
+│   ├── page.tsx
+│   ├── layout.tsx
+│
+├── components/
+│   ├── Header.tsx
+│   ├── Hero.tsx
+│   ├── Services.tsx
+│   ├── Contact.tsx
+│
+├── public/
+│
+├── styles/
+│   └── globals.css
+│
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+├── tsconfig.json
