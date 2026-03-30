@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARDURIL</title>
+  <meta name="description" content="Gestoría, automatización y asesoramiento financiero para empresas e inversores." />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 15, 20, 0.95);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      font-size: 14px;
+      color: #d0d7de;
+    }
+
+    .hero {
+      padding: 100px 40px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #b5bec8;
+      max-width: 760px;
+      margin: 0 auto 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #0b0f14;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 14px 24px;
+      border-radius: 10px;
+      color: #ffffff;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 40px;
+    }
+
+    .section h2 {
+      font-size: 34px;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      color: #b5bec8;
+      max-width: 760px;
+      margin-bottom: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #121821;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .card p {
+      color: #b5bec8;
+      font-size: 15px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: #121821;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .about-box ul {
+      padding-left: 18px;
+      color: #b5bec8;
+    }
+
+    .about-box li {
+      margin-bottom: 10px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #121821, #1a2330);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    .contact-box p {
+      color: #b5bec8;
+      margin: 14px 0 24px;
+    }
+
+    footer {
+      padding: 35px 40px;
+      text-align: center;
+      color: #8b96a5;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        flex-direction: column;
+        gap: 14px;
+        padding: 20px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+
+      .hero {
+        padding: 70px 20px 50px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .section {
+        padding: 55px 20px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ARDURIL</div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre-arduril">Sobre ARDURIL</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Gestoría, automatización y asesoramiento para empresas que quieren crecer</h1>
+    <p>
+      Ayudamos a pymes, negocios e inversores a mejorar su organización, reducir carga operativa
+      y tomar mejores decisiones mediante gestión financiera, automatización de procesos y visión estratégica.
+    </p>
+    <div class="buttons">
+      <a href="#contacto" class="btn-primary">Solicitar contacto</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </section>
+
+  <section class="section" id="servicios">
+    <h2>Servicios</h2>
+    <p class="section-intro">
+      Una estructura pensada para combinar control, eficiencia y crecimiento.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Gestoría y control financiero</h3>
+        <p>
+          Soporte contable, organización administrativa, control económico y reporting para empresas
+          que necesitan orden, visibilidad y seguimiento real de su actividad.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Automatización de procesos</h3>
+        <p>
+          Diseñamos flujos de trabajo para reducir tareas manuales, ahorrar tiempo y mejorar la eficiencia
+          operativa mediante automatismos adaptados a cada negocio.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Asesoramiento estratégico</h3>
+        <p>
+          Apoyo en decisiones empresariales, análisis de oportunidades y enfoque práctico para mejorar
+          rentabilidad, estructura y capacidad de crecimiento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre-arduril">
+    <div class="about">
+      <div>
+        <h2>Sobre ARDURIL</h2>
+        <p class="section-intro">
+          ARDURIL nace con una idea clara: combinar visión financiera, organización y tecnología útil
+          para ayudar a negocios y clientes a trabajar mejor.
+        </p>
+        <p class="section-intro">
+          No se trata solo de llevar una gestión. Se trata de aportar criterio, estructura y herramientas
+          para que una empresa pueda operar con más claridad y escalar con menos fricción.
+        </p>
+      </div>
+
+      <div class="about-box">
+        <ul>
+          <li>Enfoque práctico y orientado a resultados.</li>
+          <li>Mejora de procesos y reducción de tareas repetitivas.</li>
+          <li>Visión financiera aplicada al negocio real.</li>
+          <li>Modelo preparado para crecer y evolucionar.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="contact-box">
+      <h2>Hablemos</h2>
+      <p>
+        Si quieres profesionalizar la gestión de tu negocio, automatizar procesos o construir una estructura más sólida, podemos valorarlo contigo.
+      </p>
+      <a href="mailto:info@arduril.com" class="btn-primary">Escribir por email</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 ARDURIL. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
