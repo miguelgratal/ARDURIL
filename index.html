@@ -1,308 +1,786 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link rel="icon" href="logo.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARDURIL | Gestión, automatización y estrategia</title>
-  <meta name="description" content="ARDURIL ayuda a empresas a mejorar su gestión, automatizar procesos y tomar decisiones con más control y claridad." />
+  <title>ARDURIL | Cerebro financiero y operativo para pymes</title>
+  <meta
+    name="description"
+    content="ARDURIL ayuda a autónomos y pymes a mejorar su gestión, reducir carga administrativa y crecer con más control, claridad y eficiencia."
+  />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(rgba(5,10,20,0.7), rgba(5,10,20,0.7)),
-              url("fondo.png") no-repeat center center fixed;
-  background-size: cover;
-  color: #f5f1e8;
-}
-    a { text-decoration: none; color: inherit; }
+    :root {
+      --azul: #003366;
+      --azul-2: #0a2f57;
+      --azul-3: #123d6b;
+      --hueso: #f5f5eb;
+      --hueso-2: #dfdfd1;
+      --linea: rgba(245, 245, 235, 0.12);
+      --card: rgba(7, 30, 56, 0.58);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(0, 27, 54, 0.82), rgba(0, 27, 54, 0.9)),
+        url("fondo.png") no-repeat center center fixed;
+      background-size: cover;
+      color: var(--hueso);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-background: transparent;
       position: sticky;
       top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 34, 68, 0.38);
+      border-bottom: 1px solid var(--linea);
     }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    nav a {
-      margin-left: 20px;
-      color: #c7d0db;
-      font-size: 14px;
-    }
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 110px 40px 80px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 54px;
-      line-height: 1.12;
-      margin-bottom: 22px;
-    }
-    .hero p {
-      max-width: 760px;
-      margin: 0 auto 32px;
-      color: #d9d4c7;
-      font-size: 20px;
-    }
-    .buttons {
+
+    .nav {
+      min-height: 94px;
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand img {
+      height: 72px;
+      width: auto;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
       flex-wrap: wrap;
     }
-    .btn-primary {
-      background: #fff;
-      color: #0b0f14;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 14px 24px;
-      border-radius: 10px;
-    }
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 75px 40px;
-    }
-    .section h2 {
-      font-size: 34px;
-      margin-bottom: 14px;
-    }
-    .section-intro {
-      max-width: 760px;
-      color: #b7c0ca;
-      margin-bottom: 34px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-    }
-    .card {
-background: rgba(10, 20, 35, 0.6);
-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 28px;
-    }
-    .card h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
-    }
-    .card p {
-      color: #b7c0ca;
+
+    .menu a {
+      color: var(--hueso);
+      opacity: 0.9;
       font-size: 15px;
     }
-    .split {
+
+    .menu a:hover {
+      opacity: 1;
+    }
+
+    .btn-nav {
+      padding: 12px 18px;
+      border: 1px solid var(--linea);
+      border-radius: 12px;
+      background: rgba(245, 245, 235, 0.06);
+    }
+
+    .hero {
+      padding: 78px 0 48px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 34px;
       align-items: center;
     }
-    .panel {
-background: rgba(10, 20, 35, 0.6);
-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--linea);
+      border-radius: 999px;
+      background: rgba(245, 245, 235, 0.06);
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+      max-width: 850px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--hueso-2);
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--hueso);
+      color: var(--azul);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--linea);
+      background: rgba(245, 245, 235, 0.05);
+      color: var(--hueso);
+    }
+
+    .hero-points {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--hueso-2);
+      font-size: 14px;
+    }
+
+    .hero-card,
+    .card,
+    .trust-box,
+    .cta-box,
+    .process-step,
+    .verifactu-box {
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--linea);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
       padding: 28px;
     }
-    .panel ul {
-      padding-left: 18px;
-      color: #b7c0ca;
+
+    .hero-card h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
     }
-    .panel li {
+
+    .hero-card ul {
+      list-style: none;
+    }
+
+    .hero-card li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(245, 245, 235, 0.08);
+      color: var(--hueso-2);
+    }
+
+    .hero-card li:last-child {
+      border-bottom: none;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: 38px;
+      line-height: 1.14;
+      margin-bottom: 12px;
+    }
+
+    .section-head p {
+      color: var(--hueso-2);
+      font-size: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--hueso-2);
+      font-size: 15px;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .compare-box {
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid var(--linea);
+      background: rgba(245, 245, 235, 0.04);
+    }
+
+    .compare-box h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .compare-box ul {
+      list-style: none;
+    }
+
+    .compare-box li {
+      padding: 10px 0;
+      color: var(--hueso-2);
+      border-bottom: 1px solid rgba(245, 245, 235, 0.08);
+    }
+
+    .compare-box li:last-child {
+      border-bottom: none;
+    }
+
+    .pain-list,
+    .solution-list,
+    .service-list,
+    .trust-list {
+      list-style: none;
+    }
+
+    .pain-list li,
+    .solution-list li,
+    .service-list li,
+    .trust-list li {
+      padding: 10px 0;
+      color: var(--hueso-2);
+      border-bottom: 1px solid rgba(245, 245, 235, 0.08);
+    }
+
+    .pain-list li:last-child,
+    .solution-list li:last-child,
+    .service-list li:last-child,
+    .trust-list li:last-child {
+      border-bottom: none;
+    }
+
+    .service-card h3 {
       margin-bottom: 10px;
     }
-    .highlight {
-background: rgba(10, 20, 35, 0.6);
-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 36px;
+
+    .service-card .mini-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--hueso-2);
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .verifactu-box {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .verifactu-box h3 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .verifactu-box p {
+      color: var(--hueso-2);
+      margin-bottom: 14px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .trust-box {
+      padding: 24px;
+    }
+
+    .trust-box h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .trust-box p {
+      color: var(--hueso-2);
+      font-size: 15px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .process-step {
+      padding: 24px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--hueso);
+      color: var(--azul);
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .process-step h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .process-step p {
+      color: var(--hueso-2);
+      font-size: 15px;
+    }
+
+    .cta-box {
+      padding: 40px 32px;
       text-align: center;
     }
-    .highlight p {
-      color: #b7c0ca;
-      margin: 14px 0 24px;
+
+    .cta-box h2 {
+      font-size: 38px;
+      line-height: 1.14;
+      margin-bottom: 12px;
     }
+
+    .cta-box p {
+      color: var(--hueso-2);
+      max-width: 800px;
+      margin: 0 auto 22px;
+      font-size: 18px;
+    }
+
     footer {
-      margin-top: 40px;
-      padding: 32px 20px;
-      text-align: center;
-      color: #8793a2;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 30px 0 40px;
+      border-top: 1px solid var(--linea);
+      margin-top: 24px;
     }
-    @media (max-width: 850px) {
-      header {
-        flex-direction: column;
-        gap: 14px;
-        padding: 18px 20px;
-      }
-      nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      nav a {
-        margin: 0 10px;
-      }
-      .hero {
-        padding: 80px 20px 55px;
-      }
-      .hero h1 {
-        font-size: 38px;
-      }
-      .hero p {
-        font-size: 18px;
-      }
-      .section {
-        padding: 58px 20px;
-      }
-      .split {
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--hueso-2);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .verifactu-box,
+      .grid-3,
+      .trust-grid,
+      .process-grid,
+      .grid-2,
+      .compare {
         grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 14px 0;
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu {
+        gap: 12px;
+      }
+
+      .brand img {
+        height: 62px;
+      }
+
+      .hero {
+        padding: 54px 0 28px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p,
+      .section-head p,
+      .cta-box p {
+        font-size: 17px;
+      }
+
+      .section-head h2,
+      .cta-box h2 {
+        font-size: 30px;
+      }
+
+      .hero-card,
+      .card,
+      .trust-box,
+      .cta-box,
+      .process-step,
+      .verifactu-box {
+        padding: 22px;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
-<div class="logo">
-  <img src="logo.png" alt="ARDURIL" style="height: 90px;">
-</div>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#modelo">Modelo</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <img src="logo.png" alt="ARD" />
+      </a>
+
+      <nav class="menu">
+        <a href="#propuesta">Qué hacemos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#verifactu">Verifactu</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto" class="btn-nav">Contacto</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Gestión, automatización y estructura para empresas que quieren operar mejor</h1>
-    <p>
-      ARDURIL ayuda a negocios y pymes a mejorar su organización, reducir tareas manuales
-      y tomar decisiones con más claridad a través de gestión financiera, automatización de procesos
-      y enfoque estratégico.
-    </p>
-    <div class="buttons">
-      <a href="#contacto" class="btn-primary">Solicitar contacto</a>
-      <a href="#servicios" class="btn-secondary">Ver servicios</a>
-    </div>
-  </section>
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Cerebro financiero + operativo para pymes</div>
 
-  <section class="section" id="servicios">
-    <h2>Qué puede hacer ARDURIL por tu negocio</h2>
-    <p class="section-intro">
-      Una propuesta pensada para aportar orden, eficiencia y visión práctica.
-    </p>
+          <h1>Haz que tu empresa funcione con más control, menos caos y más capacidad de crecer</h1>
 
-    <div class="cards">
-      <div class="card">
-        <h3>Gestión y control</h3>
-        <p>
-          Organización administrativa, control económico, estructura contable
-          y seguimiento para negocios que necesitan visibilidad y criterio.
-        </p>
+          <p>
+            ARDURIL ayuda a autónomos y pymes a ordenar su gestión, reducir carga administrativa
+            y tomar mejores decisiones con una combinación de contabilidad, fiscalidad, cercanía
+            y visión de negocio.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn-primary">Hablar con un asesor</a>
+            <a href="#servicios" class="btn-secondary">Ver servicios</a>
+          </div>
+
+          <div class="hero-points">
+            <span>Atención humana directa</span>
+            <span>Respuesta ágil</span>
+            <span>Visión de crecimiento</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>ARDURIL no es solo una gestoría</h3>
+          <ul>
+            <li>Te ayudamos a cumplir, pero también a entender y mejorar tu negocio.</li>
+            <li>No queremos que solo “presentes impuestos”, sino que tengas control real.</li>
+            <li>Trabajamos con cercanía hoy y con mentalidad de automatización para mañana.</li>
+          </ul>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Automatización de procesos</h3>
-        <p>
-          Reducción de tareas repetitivas, mejora de flujos y diseño de automatismos
-          para ahorrar tiempo y mejorar la operativa diaria.
-        </p>
+    <section id="propuesta">
+      <div class="container">
+        <div class="section-head">
+          <h2>Una asesoría pensada para empresas que quieren algo más que cumplir</h2>
+          <p>
+            Muchos negocios tienen gestoría, pero pocos tienen una estructura que les ayude de verdad
+            a tomar decisiones, ahorrar tiempo y crecer con orden.
+          </p>
+        </div>
+
+        <div class="compare">
+          <div class="compare-box">
+            <h3>Gestoría tradicional</h3>
+            <ul>
+              <li>Presenta impuestos y poco más.</li>
+              <li>Te responde cuando ya hay un problema.</li>
+              <li>No te da visión global del negocio.</li>
+              <li>La relación suele ser fría y reactiva.</li>
+            </ul>
+          </div>
+
+          <div class="compare-box">
+            <h3>ARDURIL</h3>
+            <ul>
+              <li>Combina gestión, control y acompañamiento.</li>
+              <li>Atención directa y humana, sin robots ni esperas innecesarias.</li>
+              <li>Ayuda a ordenar la operativa y entender mejor la empresa.</li>
+              <li>Está pensado para evolucionar hacia procesos más eficientes.</li>
+            </ul>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Apoyo estratégico</h3>
-        <p>
-          Análisis de situación, mejora de estructura y acompañamiento en decisiones
-          para crecer con una base más sólida.
-        </p>
+    <section id="dolores">
+      <div class="container grid-2">
+        <div class="card">
+          <h3>Problemas habituales de autónomos y pymes</h3>
+          <ul class="pain-list">
+            <li>No tienen una visión clara de lo que ganan realmente.</li>
+            <li>Pierden tiempo en gestiones que no aportan valor.</li>
+            <li>Su asesoría solo cumple, pero no acompaña.</li>
+            <li>La parte administrativa se convierte en una carga constante.</li>
+            <li>Les falta estructura para crecer con orden.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>La solución ARDURIL</h3>
+          <ul class="solution-list">
+            <li>Organizamos la base financiera y administrativa del negocio.</li>
+            <li>Reducimos fricción y aportamos claridad operativa.</li>
+            <li>Explicamos las cosas de forma sencilla y útil.</li>
+            <li>Acompañamos con una visión más cercana y práctica.</li>
+            <li>Preparamos el terreno para procesos más escalables.</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="modelo">
-    <div class="split">
-      <div>
-        <h2>Un enfoque práctico y orientado a resultados</h2>
-        <p class="section-intro">
-          ARDURIL no busca solo prestar un servicio. Busca ayudar a que una empresa funcione mejor,
-          gane tiempo, reduzca fricción y tenga una estructura más preparada para crecer.
-        </p>
-        <p class="section-intro">
-          La idea es unir visión financiera, orden operativo y automatización útil
-          para que el negocio tenga más control y menos carga innecesaria.
-        </p>
+    <section id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servicios principales de ARDURIL</h2>
+          <p>
+            Una estructura pensada para resolver las necesidades reales de cualquier autónomo o pyme:
+            cumplir, organizarse y crecer.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card service-card">
+            <div class="mini-title">Servicio núcleo</div>
+            <h3>Contabilidad, fiscalidad y gestión administrativa</h3>
+            <ul class="service-list">
+              <li>Contabilidad y obligaciones fiscales.</li>
+              <li>Impuestos y gestión administrativa diaria.</li>
+              <li>Orden documental y seguimiento básico del negocio.</li>
+              <li>Apoyo directo para dudas y decisiones del día a día.</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <div class="mini-title">Evolución futura</div>
+            <h3>Automatización de procesos</h3>
+            <ul class="service-list">
+              <li>Reducción de tareas manuales y repetitivas.</li>
+              <li>Flujos más rápidos y menos errores operativos.</li>
+              <li>Base preparada para escalar con eficiencia.</li>
+              <li>Enfoque tecnológico útil, no complejo.</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <div class="mini-title">Crecimiento empresarial</div>
+            <h3>Marketing, posicionamiento web y páginas</h3>
+            <ul class="service-list">
+              <li>Apoyo para mejorar presencia digital.</li>
+              <li>Web orientada a captar clientes.</li>
+              <li>Posicionamiento y visibilidad online.</li>
+              <li>Servicios para ayudar al negocio a crecer.</li>
+            </ul>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="panel">
-        <ul>
-          <li>Menos trabajo manual y más eficiencia.</li>
-          <li>Más claridad en la gestión y en la toma de decisiones.</li>
-          <li>Procesos más ordenados y escalables.</li>
-          <li>Visión práctica, no solo teórica.</li>
-        </ul>
+    <section id="verifactu">
+      <div class="container">
+        <div class="verifactu-box">
+          <div>
+            <h3>Verifactu: una obligación nueva que también puede ser una oportunidad</h3>
+            <p>
+              Verifactu cambia la forma en la que muchos negocios tendrán que gestionar su facturación.
+              Para muchas empresas será un problema si llegan tarde.
+            </p>
+            <p>
+              En ARDURIL lo explicamos de forma sencilla y te ayudamos a adaptarte sin convertirlo
+              en otra carga más. Bien planteado, puede servir para ordenar mejor tu operativa desde ya.
+            </p>
+            <a href="#contacto" class="btn-primary">Quiero preparar mi negocio</a>
+          </div>
+
+          <div class="card">
+            <h3>Qué necesita entender tu empresa</h3>
+            <ul class="service-list">
+              <li>Qué cambia exactamente con Verifactu.</li>
+              <li>Cómo afecta a tu forma de facturar.</li>
+              <li>Qué riesgos hay si no te anticipas.</li>
+              <li>Cómo aprovechar el cambio para ordenar procesos.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-<section class="section" id="proceso">
-  <h2>Cómo trabajamos</h2>
-  <p class="section-intro">
-    Un proceso sencillo, claro y orientado a entender la necesidad real de cada cliente.
-  </p>
+    </section>
 
-  <div class="cards">
-    <div class="card">
-      <h3>1. Análisis inicial</h3>
-      <p>
-        Revisamos la situación del negocio, detectamos necesidades y entendemos dónde están los principales puntos de mejora.
-      </p>
-    </div>
+    <section id="confianza">
+      <div class="container">
+        <div class="section-head">
+          <h2>Por qué elegir ARDURIL</h2>
+          <p>
+            No buscamos ser una gestoría más. Buscamos ser una pieza útil y estratégica para tu negocio.
+          </p>
+        </div>
 
-    <div class="card">
-      <h3>2. Propuesta práctica</h3>
-      <p>
-        Definimos una forma de trabajo clara, con foco en orden, eficiencia y utilidad real para la empresa.
-      </p>
-    </div>
+        <div class="trust-grid">
+          <div class="trust-box">
+            <h3>Trato humano directo</h3>
+            <p>No hablamos de cercanía como un tópico. La relación con el cliente es una parte central del servicio.</p>
+          </div>
 
-    <div class="card">
-      <h3>3. Implementación</h3>
-      <p>
-        Ponemos en marcha la solución y ajustamos el enfoque para que la operativa mejore de verdad.
-      </p>
-    </div>
-  </div>
-</section>
-  <section class="section" id="contacto">
-    <div class="highlight">
-      <h2>Empecemos por una primera conversación</h2>
-      <p>
-        Si quieres mejorar la estructura de tu negocio, profesionalizar procesos
-        o reducir carga operativa, podemos valorar contigo el mejor enfoque.
-      </p>
-      <a href="mailto:info@arduril.com" class="btn-primary">Escribir por email</a>
-    </div>
-  </section>
+          <div class="trust-box">
+            <h3>Rapidez y claridad</h3>
+            <p>Menos vueltas, menos lenguaje innecesario y más respuestas útiles para el negocio real.</p>
+          </div>
+
+          <div class="trust-box">
+            <h3>Visión práctica</h3>
+            <p>No nos quedamos en cumplir. Buscamos aportar estructura, criterio y utilidad.</p>
+          </div>
+
+          <div class="trust-box">
+            <h3>Preparado para crecer</h3>
+            <p>La base es la gestoría, pero la visión va hacia procesos más eficientes y empresas mejor organizadas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-head">
+          <h2>Cómo trabajamos</h2>
+          <p>
+            Un proceso simple, claro y orientado a entender lo que necesita cada negocio sin complicarlo.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h3>Primera conversación</h3>
+            <p>Entendemos tu actividad, tu estructura y los puntos de fricción que tienes hoy.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h3>Análisis y propuesta</h3>
+            <p>Valoramos qué necesita tu negocio y te planteamos una forma de trabajo clara.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h3>Puesta en marcha</h3>
+            <p>Empezamos a trabajar con foco en orden, visibilidad y una comunicación sencilla.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h3>Mejora continua</h3>
+            <p>Con el tiempo buscamos afinar procesos y reforzar la estructura del negocio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Deja de tener una gestoría que solo reacciona. Empieza a tener una estructura que te ayude a crecer.</h2>
+          <p>
+            Si quieres una asesoría más cercana, más clara y más útil para tu negocio, hablemos.
+            Te responderá una persona, no un robot.
+          </p>
+
+          <div class="hero-actions" style="justify-content:center;">
+            <a href="mailto:info@arduril.com" class="btn-primary">Escribir por email</a>
+            <a href="https://wa.me/" class="btn-secondary">Hablar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    © 2026 ARDURIL. Todos los derechos reservados.
+    <div class="container footer-wrap">
+      <div>© 2026 ARDURIL. Todos los derechos reservados.</div>
+      <div>Cerebro financiero + operativo para pymes</div>
+    </div>
   </footer>
-
 </body>
 </html>
