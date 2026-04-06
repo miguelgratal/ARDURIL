@@ -1,1 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | ARDURIL</title>
+  <meta name="description" content="Contacta con ARDURIL para mejorar la gestión, organización y crecimiento de tu negocio." />
+  <style>
+    :root {
+      --azul: #003366;
+      --hueso: #f5f5eb;
+      --hueso-2: #dfdfd1;
+      --linea: rgba(245, 245, 235, 0.12);
+      --card: rgba(7, 30, 56, 0.58);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(0, 27, 54, 0.82), rgba(0, 27, 54, 0.9)),
+        url("fondo.png") no-repeat center center fixed;
+      background-size: cover;
+      color: var(--hueso);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 34, 68, 0.38);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .nav {
+      min-height: 94px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand img {
+      height: 72px;
+      width: auto;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--hueso);
+      opacity: 0.92;
+      font-size: 15px;
+    }
+
+    .btn-nav {
+      padding: 12px 18px;
+      border: 1px solid var(--linea);
+      border-radius: 12px;
+      background: rgba(245, 245, 235, 0.06);
+    }
+
+    .hero {
+      padding: 72px 0 32px;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      line-height: 1.08;
+      margin-bottom: 16px;
+      max-width: 850px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--hueso-2);
+      max-width: 780px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      padding: 12px 0 34px;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--linea);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .card h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--hueso-2);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(245, 245, 235, 0.14);
+      background: rgba(245, 245, 235, 0.05);
+      color: var(--hueso);
+      border-radius: 14px;
+      padding: 14px 16px;
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(245, 245, 235, 0.55);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: var(--hueso);
+      color: var(--azul);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--linea);
+      background: rgba(245, 245, 235, 0.05);
+      color: var(--hueso);
+    }
+
+    .contact-options {
+      display: grid;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .option-box {
+      border: 1px solid var(--linea);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(245, 245, 235, 0.04);
+    }
+
+    .option-box h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .option-box p {
+      margin-bottom: 12px;
+      color: var(--hueso-2);
+      font-size: 15px;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: var(--hueso-2);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 30px 0 40px;
+      border-top: 1px solid var(--linea);
+      margin-top: 20px;
+      color: var(--hueso-2);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 14px 0;
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand img {
+        height: 62px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .card h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="ARD" />
+      </a>
+
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="blog.html">Blog</a>
+        <a href="simuladores.html">Simuladores</a>
+        <a href="contacto.html" class="btn-nav">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Hablemos de tu negocio</h1>
+        <p>
+          Si buscas una asesoría más cercana, más clara y más útil para tu empresa,
+          cuéntanos tu situación. En ARDURIL te responderá una persona.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid">
+        <div class="card">
+          <h2>Cuéntanos qué necesitas</h2>
+          <p>
+            Este formulario está pensado para que podamos entender mejor tu caso y orientarte
+            con más claridad desde el primer contacto.
+          </p>
+
+          <form>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" />
+            </div>
+
+            <div class="form-group">
+              <label for="empresa">Empresa</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="tuemail@empresa.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" />
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente qué necesita tu negocio"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Enviar consulta</button>
+          </form>
+
+          <div class="note">
+            Versión inicial: este formulario es visual. En el siguiente paso podemos hacer que te lleguen los mensajes de verdad.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Otras formas de contactar</h2>
+          <p>
+            Si prefieres ir más rápido, también puedes escribirnos directamente o contactar por WhatsApp.
+          </p>
+
+          <div class="contact-options">
+            <div class="option-box">
+              <h3>Email</h3>
+              <p>Ideal para explicarnos tu caso con algo más de detalle.</p>
+              <a href="mailto:info@arduril.com" class="btn-secondary">Escribir por email</a>
+            </div>
+
+            <div class="option-box">
+              <h3>WhatsApp</h3>
+              <p>La opción más rápida para una primera toma de contacto.</p>
+              <a href="https://wa.me/" class="btn-secondary">Abrir WhatsApp</a>
+            </div>
+
+            <div class="option-box">
+              <h3>Llamada</h3>
+              <p>Si prefieres una conversación directa, también puedes pedir una llamada.</p>
+              <a href="tel:+34000000000" class="btn-secondary">Llamar ahora</a>
+            </div>
+          </div>
+
+          <div class="note">
+            Aquí luego cambiaremos el email, WhatsApp y teléfono por tus datos reales.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 ARDURIL. Todos los derechos reservados.
+    </div>
+  </footer>
+</body>
+</html>
