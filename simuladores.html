@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simuladores | ARDURIL</title>
+  <meta
+    name="description"
+    content="Simuladores financieros y fiscales de ARDURIL para autónomos y pymes: IVA, IRPF, cuota de autónomos, rentabilidad y punto de equilibrio."
+  />
+  <style>
+    :root {
+      --azul: #003366;
+      --hueso: #f5f5eb;
+      --hueso-2: #dfdfd1;
+      --linea: rgba(245, 245, 235, 0.12);
+      --card: rgba(7, 30, 56, 0.58);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+      --ok: #dff5e8;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(0, 27, 54, 0.82), rgba(0, 27, 54, 0.9)),
+        url("fondo.png") no-repeat center center fixed;
+      background-size: cover;
+      color: var(--hueso);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    input,
+    select,
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 34, 68, 0.38);
+      border-bottom: 1px solid var(--linea);
+      z-index: 50;
+    }
+
+    .nav {
+      min-height: 94px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand img {
+      height: 72px;
+      width: auto;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      font-size: 15px;
+      opacity: 0.92;
+    }
+
+    .btn-nav {
+      padding: 12px 18px;
+      border: 1px solid var(--linea);
+      border-radius: 12px;
+      background: rgba(245, 245, 235, 0.06);
+    }
+
+    .hero {
+      padding: 72px 0 26px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.08;
+      margin-bottom: 14px;
+      max-width: 900px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--hueso-2);
+      max-width: 780px;
+    }
+
+    .intro-box {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--linea);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-box p {
+      color: var(--hueso-2);
+      font-size: 16px;
+    }
+
+    section {
+      padding: 24px 0;
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+
+    .section-head h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--hueso-2);
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--linea);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--hueso-2);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid rgba(245, 245, 235, 0.14);
+      background: rgba(245, 245, 235, 0.05);
+      color: var(--hueso);
+      border-radius: 12px;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(245, 245, 235, 0.55);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--hueso);
+      color: var(--azul);
+    }
+
+    .btn-secondary {
+      background: rgba(245, 245, 235, 0.06);
+      color: var(--hueso);
+      border: 1px solid var(--linea);
+    }
+
+    .result {
+      margin-top: 8px;
+      background: rgba(245, 245, 235, 0.06);
+      border: 1px solid var(--linea);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .result strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .result p {
+      margin: 0;
+      color: var(--ok);
+      font-size: 15px;
+    }
+
+    .lead-box {
+      margin-top: 20px;
+      background: var(--card);
+      border: 1px solid var(--linea);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 36px 28px;
+      text-align: center;
+    }
+
+    .lead-box h2 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .lead-box p {
+      color: var(--hueso-2);
+      max-width: 760px;
+      margin: 0 auto 20px;
+      font-size: 17px;
+    }
+
+    .lead-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 30px 0 40px;
+      border-top: 1px solid var(--linea);
+      margin-top: 30px;
+      color: var(--hueso-2);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 14px 0;
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand img {
+        height: 62px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p,
+      .section-head p,
+      .lead-box p {
+        font-size: 17px;
+      }
+
+      .section-head h2,
+      .lead-box h2 {
+        font-size: 28px;
+      }
+
+      .card h3 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="ARD" />
+      </a>
+
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="blog.html">Blog</a>
+        <a href="simuladores.html">Simuladores</a>
+        <a href="contacto.html" class="btn-nav">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Simuladores financieros y fiscales para autónomos y pymes</h1>
+        <p>
+          Herramientas simples, útiles y orientadas a negocio para ayudarte a entender mejor
+          tus números y tomar decisiones con más claridad.
+        </p>
+
+        <div class="intro-box">
+          <p>
+            Estos simuladores son orientativos y sirven como primera referencia. Si quieres un análisis
+            adaptado a tu caso real, en ARDURIL podemos revisarlo contigo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Calculadoras prácticas</h2>
+          <p>
+            Cinco herramientas pensadas para resolver dudas reales del día a día de cualquier negocio.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>1. Calculadora de IVA</h3>
+            <p>
+              Calcula base imponible, cuota de IVA y total a partir de un importe sin IVA o con IVA incluido.
+            </p>
+
+            <div class="form-group">
+              <label for="ivaImporte">Importe</label>
+              <input type="number" id="ivaImporte" placeholder="Ej. 1000" />
+            </div>
+
+            <div class="form-group">
+              <label for="ivaTipo">Tipo de IVA</label>
+              <select id="ivaTipo">
+                <option value="21">21%</option>
+                <option value="10">10%</option>
+                <option value="4">4%</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="ivaModo">Modo de cálculo</label>
+              <select id="ivaModo">
+                <option value="sin">El importe es sin IVA</option>
+                <option value="con">El importe ya incluye IVA</option>
+              </select>
+            </div>
+
+            <div class="actions">
+              <button class="btn-primary" onclick="calcularIVA()">Calcular IVA</button>
+            </div>
+
+            <div class="result" id="resultadoIVA">
+              <strong>Resultado</strong>
+              <p>Introduce los datos para calcular.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>2. Calculadora IRPF autónomo simplificada</h3>
+            <p>
+              Estima un IRPF orientativo a partir del beneficio anual antes de impuestos.
+            </p>
+
+            <div class="form-group">
+              <label for="irpfBeneficio">Beneficio anual estimado (€)</label>
+              <input type="number" id="irpfBeneficio" placeholder="Ej. 30000" />
+            </div>
+
+            <div class="actions">
+              <button class="btn-primary" onclick="calcularIRPF()">Calcular IRPF</button>
+            </div>
+
+            <div class="result" id="resultadoIRPF">
+              <strong>Resultado</strong>
+              <p>Introduce el beneficio anual estimado.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>3. Calculadora de cuota de autónomos</h3>
+            <p>
+              Estimación rápida de cuota mensual según rendimiento neto mensual.
+            </p>
+
+            <div class="form-group">
+              <label for="cuotaRendimiento">Rendimiento neto mensual (€)</label>
+              <input type="number" id="cuotaRendimiento" placeholder="Ej. 1500" />
+            </div>
+
+            <div class="actions">
+              <button class="btn-primary" onclick="calcularCuota()">Calcular cuota</button>
+            </div>
+
+            <div class="result" id="resultadoCuota">
+              <strong>Resultado</strong>
+              <p>Introduce tu rendimiento neto mensual estimado.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>4. Calculadora de rentabilidad de negocio</h3>
+            <p>
+              Mide el margen neto de tu actividad en función de ingresos y gastos.
+            </p>
+
+            <div class="form-group">
+              <label for="rentIngresos">Ingresos mensuales (€)</label>
+              <input type="number" id="rentIngresos" placeholder="Ej. 10000" />
+            </div>
+
+            <div class="form-group">
+              <label for="rentGastos">Gastos mensuales (€)</label>
+              <input type="number" id="rentGastos" placeholder="Ej. 7000" />
+            </div>
+
+            <div class="actions">
+              <button class="btn-primary" onclick="calcularRentabilidad()">Calcular rentabilidad</button>
+            </div>
+
+            <div class="result" id="resultadoRentabilidad">
+              <strong>Resultado</strong>
+              <p>Introduce ingresos y gastos mensuales.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>5. Calculadora de punto de equilibrio</h3>
+            <p>
+              Averigua cuánto tienes que facturar al mes para cubrir todos tus costes.
+            </p>
+
+            <div class="form-group">
+              <label for="peCostesFijos">Costes fijos mensuales (€)</label>
+              <input type="number" id="peCostesFijos" placeholder="Ej. 2500" />
+            </div>
+
+            <div class="form-group">
+              <label for="peMargen">Margen bruto sobre ventas (%)</label>
+              <input type="number" id="peMargen" placeholder="Ej. 40" />
+            </div>
+
+            <div class="actions">
+              <button class="btn-primary" onclick="calcularPuntoEquilibrio()">Calcular punto de equilibrio</button>
+            </div>
+
+            <div class="result" id="resultadoPE">
+              <strong>Resultado</strong>
+              <p>Introduce tus costes fijos y margen bruto.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Cómo usar estos simuladores para mejorar tu negocio</h3>
+            <p>
+              Estas herramientas sirven para detectar dudas rápidas, pero también para abrir conversaciones de valor.
+            </p>
+
+            <ul style="padding-left:18px; color: var(--hueso-2);">
+              <li style="margin-bottom:10px;">Entender mejor cuánto dejas realmente en impuestos.</li>
+              <li style="margin-bottom:10px;">Ver si tu actividad tiene margen suficiente.</li>
+              <li style="margin-bottom:10px;">Comprobar cuánto necesitas facturar para no perder dinero.</li>
+              <li>Detectar cuándo necesitas una estructura financiera más sólida.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lead-box">
+          <h2>¿Quieres que lo revisemos contigo?</h2>
+          <p>
+            Un simulador te da una referencia. ARDURIL puede ayudarte a convertir esos números
+            en decisiones reales para tu negocio.
+          </p>
+
+          <div class="lead-actions">
+            <a href="contacto.html" class="btn-primary">Solicitar análisis</a>
+            <a href="mailto:info@arduril.com" class="btn-secondary">Escribir por email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 ARDURIL. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script>
+    function formatearEUR(valor) {
+      return new Intl.NumberFormat('es-ES', {
+        style: 'currency',
+        currency: 'EUR'
+      }).format(valor);
+    }
+
+    function calcularIVA() {
+      const importe = parseFloat(document.getElementById('ivaImporte').value);
+      const tipo = parseFloat(document.getElementById('ivaTipo').value);
+      const modo = document.getElementById('ivaModo').value;
+      const resultado = document.getElementById('resultadoIVA');
+
+      if (isNaN(importe) || importe <= 0) {
+        resultado.innerHTML = '<strong>Resultado</strong><p>Introduce un importe válido.</p>';
+        return;
+      }
+
+      if (modo === 'sin') {
+        const cuota = importe * (tipo / 100);
+        const total = importe + cuota;
+        resultado.innerHTML = `
+          <strong>Resultado</strong>
+          <p>Base imponible: ${formatearEUR(importe)}<br>
+          IVA (${tipo}%): ${formatearEUR(cuota)}<br>
+          Total factura: ${formatearEUR(total)}</p>
+        `;
+      } else {
+        const base = importe / (1 + tipo / 100);
+        const cuota = importe - base;
+        resultado.innerHTML = `
+          <strong>Resultado</strong>
+          <p>Total con IVA: ${formatearEUR(importe)}<br>
+          Base imponible: ${formatearEUR(base)}<br>
+          IVA incluido (${tipo}%): ${formatearEUR(cuota)}</p>
+        `;
+      }
+    }
+
+    function calcularIRPF() {
+      const beneficio = parseFloat(document.getElementById('irpfBeneficio').value);
+      const resultado = document.getElementById('resultadoIRPF');
+
+      if (isNaN(beneficio) || beneficio < 0) {
+        resultado.innerHTML = '<strong>Resultado</strong><p>Introduce un beneficio anual válido.</p>';
+        return;
+      }
+
+      let tipo = 0;
+
+      if (beneficio <= 12450) tipo = 0.19;
+      else if (beneficio <= 20200) tipo = 0.24;
+      else if (beneficio <= 35200) tipo = 0.30;
+      else if (beneficio <= 60000) tipo = 0.37;
+      else type = 0.45;
+
+      if (beneficio > 60000) tipo = 0.45;
+
+      const cuota = beneficio * tipo;
+      const neto = beneficio - cuota;
+      const mensual = neto / 12;
+
+      resultado.innerHTML = `
+        <strong>Resultado orientativo</strong>
+        <p>Tipo aplicado aproximado: ${(tipo * 100).toFixed(0)}%<br>
+        IRPF estimado anual: ${formatearEUR(cuota)}<br>
+        Neto anual tras IRPF: ${formatearEUR(neto)}<br>
+        Neto mensual aproximado: ${formatearEUR(mensual)}</p>
+      `;
+    }
+
+    function calcularCuota() {
+      const rendimiento = parseFloat(document.getElementById('cuotaRendimiento').value);
+      const resultado = document.getElementById('resultadoCuota');
+
+      if (isNaN(rendimiento) || rendimiento < 0) {
+        resultado.innerHTML = '<strong>Resultado</strong><p>Introduce un rendimiento mensual válido.</p>';
+        return;
+      }
+
+      let cuota = 225;
+
+      if (rendimiento < 670) cuota = 225;
+      else if (rendimiento < 900) cuota = 250;
+      else if (rendimiento < 1166.7) cuota = 267;
+      else if (rendimiento < 1300) cuota = 291;
+      else if (rendimiento < 1500) cuota = 294;
+      else if (rendimiento < 1700) cuota = 294;
+      else if (rendimiento < 1850) cuota = 320;
+      else if (rendimiento < 2030) cuota = 325;
+      else if (rendimiento < 2330) cuota = 330;
+      else if (rendimiento < 2760) cuota = 350;
+      else if (rendimiento < 3190) cuota = 370;
+      else if (rendimiento < 3620) cuota = 390;
+      else if (rendimiento < 4050) cuota = 420;
+      else if (rendimiento < 6000) cuota = 450;
+      else cuota = 530;
+
+      resultado.innerHTML = `
+        <strong>Resultado orientativo</strong>
+        <p>Rendimiento neto mensual: ${formatearEUR(rendimiento)}<br>
+        Cuota mensual estimada de autónomos: ${formatearEUR(cuota)}</p>
+      `;
+    }
+
+    function calcularRentabilidad() {
+      const ingresos = parseFloat(document.getElementById('rentIngresos').value);
+      const gastos = parseFloat(document.getElementById('rentGastos').value);
+      const resultado = document.getElementById('resultadoRentabilidad');
+
+      if (isNaN(ingresos) || isNaN(gastos) || ingresos <= 0 || gastos < 0) {
+        resultado.innerHTML = '<strong>Resultado</strong><p>Introduce ingresos y gastos válidos.</p>';
+        return;
+      }
+
+      const beneficio = ingresos - gastos;
+      const margen = (beneficio / ingresos) * 100;
+
+      resultado.innerHTML = `
+        <strong>Resultado</strong>
+        <p>Beneficio mensual: ${formatearEUR(beneficio)}<br>
+        Margen neto: ${margen.toFixed(2)}%<br>
+        ${beneficio >= 0 ? 'Tu actividad está generando beneficio.' : 'Tu actividad está en pérdidas.'}</p>
+      `;
+    }
+
+    function calcularPuntoEquilibrio() {
+      const costes = parseFloat(document.getElementById('peCostesFijos').value);
+      const margen = parseFloat(document.getElementById('peMargen').value);
+      const resultado = document.getElementById('resultadoPE');
+
+      if (isNaN(costes) || isNaN(margen) || costes < 0 || margen <= 0 || margen >= 100) {
+        resultado.innerHTML = '<strong>Resultado</strong><p>Introduce valores válidos. El margen debe estar entre 0 y 100.</p>';
+        return;
+      }
+
+      const facturacion = costes / (margen / 100);
+
+      resultado.innerHTML = `
+        <strong>Resultado</strong>
+        <p>Con unos costes fijos de ${formatearEUR(costes)} y un margen bruto del ${margen.toFixed(2)}%,<br>
+        necesitas facturar aproximadamente ${formatearEUR(facturacion)} al mes para cubrir costes.</p>
+      `;
+    }
+  </script>
+</body>
+</html>
